@@ -2,11 +2,11 @@ import './style.css';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import Pad from './components/Pad.jsx';
+import Grid from './components/Grid';
 class App extends Component {
 
 	render(){
-		return <Pad label='Test' />
+		return <Grid numberOfPads={100} />
 	}
 }
 
