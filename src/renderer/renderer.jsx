@@ -2,9 +2,11 @@ import './style.css';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
+import Pad from './components/Pad.jsx';
 class App extends Component {
+
 	render(){
-		return <h1>Hello world!</h1>;
+		return <Pad label='Test' />
 	}
 }
 

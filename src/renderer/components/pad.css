@@ -1,0 +1,22 @@
+.pad {
+	display: inline-block;
+	width: 128px;
+	height: 110px;
+	background-color: #0178a6;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.pad .pad-label {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	color: #fff;
+	font-size: 2em;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.pad .pad-label::selection {
+	background: transparent;
+}
