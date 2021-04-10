@@ -28,6 +28,9 @@ const compiler = webpack([{
 				}]
 			}
 		]
+	},
+	resolve: {
+		extensions: ['.js', '.jsx']
 	}
 }, {
 	mode: mode,
@@ -41,7 +44,10 @@ const compiler = webpack([{
 		path: path.resolve(__dirname, 'app'),
 		filename: 'preload.js'
 	},
-	devtool: 'source-map'
+	devtool: 'source-map',
+	resolve: {
+		extensions: ['.js', '.jsx']
+	}
 }, {
 	mode: mode,
 	target: 'electron-renderer',
@@ -72,6 +78,9 @@ const compiler = webpack([{
 				use: ['style-loader', 'css-loader']
 			}
 		]
+	},
+	resolve: {
+		extensions: ['.js', '.jsx']
 	}
 }]);
 
