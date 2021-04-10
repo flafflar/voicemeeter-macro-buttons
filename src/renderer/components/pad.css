@@ -1,9 +1,11 @@
 .pad {
 	display: inline-block;
-	width: 128px;
-	height: 110px;
-	background-color: #0178a6;
+	box-sizing: border-box;
+	width: 144px;
+	height: 126px;
 	padding: 8px;
+	background-color: #0178a6;
+	border: 8px solid #111;
 	cursor: pointer;
 }
 
