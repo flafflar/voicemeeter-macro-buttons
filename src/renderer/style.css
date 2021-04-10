@@ -1,8 +1,18 @@
-body {
-	margin: 0;
-	font-family: 'Segoe UI';
+html {
+	width: 100%;
+	height: 100%;
 }
 
-h1 {
-	text-align: center;
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	font-family: 'Segoe UI';
+	background-color: #000;
+}
+
+.app {
+	width: 100%;
+	height: 100%;
 }
