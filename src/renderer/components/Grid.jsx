@@ -16,7 +16,7 @@ export default class Grid extends Component {
 	}
 
 	render(){
-		let pads = new Array(this.props.numberOfPads).fill().map((_, i) => <Pad label={i.toString()} key={i} />);
+		let pads = new Array(this.props.numberOfPads).fill().map((_, i) => <Pad pushButton={true} label={i.toString()} key={i} />);
 		return <div className='grid'>{pads}</div>
 	}
 }
