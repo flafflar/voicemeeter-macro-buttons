@@ -16,12 +16,22 @@ export default class Grid extends Component {
 	}
 
 	render(){
-		let pads = new Array(this.props.numberOfPads).fill().map((_, i) => <Pad pushButton={true} label={i.toString()} key={i} />);
+		let pads = this.props.padInfo.map(info => (
+			<Pad
+				pushButton={info.pushButton}
+				label={info.label}
+				key={info.id}
+			/>
+		));
 		return <div className='grid'>{pads}</div>
 	}
 }
 
 Grid.propTypes = {
-	/** The number of pads to display */
-	numberOfPads: PropTypes.number.isRequired
+	/** Information about the pads to render */
+	padInfo: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.number.isRequired,
+		label: PropTypes.string,
+		pushButton: PropTypes.bool.isRequired
+	}))
 }
