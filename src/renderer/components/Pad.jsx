@@ -12,17 +12,17 @@ export default class Pad extends Component {
 		super(props);
 
 		this.state = {
-			/** Wheter the button is active or not */
+			/** Wheter the pad is active or not */
 			active: false
 		}
 	}
 
-	/** Activates the button */
+	/** Activates the pad */
 	activate(){
 		this.setState({active: true})
 	}
 
-	/** Deactivates the button */
+	/** Deactivates the pad */
 	deactivate(){
 		this.setState({active: false});
 	}
@@ -33,11 +33,11 @@ export default class Pad extends Component {
 		// Left click
 		if (event.button === 0){
 
-			// If the button is a push button, activate it
+			// If the pad is a push button, activate it
 			if (this.props.pushButton){
 				this.setState({active: true})
 			} else {
-				// If the button is a 2-position button, flip its state
+				// If the pad is a 2-position button, flip its state
 				this.setState({active: !this.state.active})
 			}
 		}
@@ -49,11 +49,11 @@ export default class Pad extends Component {
 		// Left click
 		if (event.button === 0){
 
-			// If the button is a push button, deactivate it
+			// If the pad is a push button, deactivate it
 			if (this.props.pushButton){
 				this.setState({active: false})
 			}
-			// if the button is a 2-position button, do nothing
+			// if the pad is a 2-position button, do nothing
 		}
 	}
 
