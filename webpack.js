@@ -3,62 +3,11 @@ const path = require('path');
 
 let mode = process.argv.includes('--dev') ? 'development' : 'production';
 
-const compiler = webpack([{
+const common = {
 	mode: mode,
-	target: 'electron-main',
 	node: {
 		__dirname: false,
 		__filename: false
-	},
-	entry: './src/main/main.js',
-	output: {
-		path: path.resolve(__dirname, 'app'),
-		filename: 'main.js'
-	},
-	devtool: 'source-map',
-	module: {
-		rules: [
-			{
-				test: /\.html$/,
-				use: [{
-					loader: 'file-loader',
-					options: {
-						name: '[name].[ext]'
-					}
-				}]
-			}
-		]
-	},
-	resolve: {
-		extensions: ['.js', '.jsx']
-	}
-}, {
-	mode: mode,
-	target: 'electron-preload',
-	node: {
-		__dirname: false,
-		__filename: false
-	},
-	entry: './src/main/preload.js',
-	output: {
-		path: path.resolve(__dirname, 'app'),
-		filename: 'preload.js'
-	},
-	devtool: 'source-map',
-	resolve: {
-		extensions: ['.js', '.jsx']
-	}
-}, {
-	mode: mode,
-	target: 'electron-renderer',
-	node: {
-		__dirname: false,
-		__filename: false
-	},
-	entry: './src/renderer/renderer.jsx',
-	output: {
-		path: path.resolve(__dirname, 'app'),
-		filename: 'renderer.js'
 	},
 	devtool: 'source-map',
 	module: {
@@ -76,11 +25,46 @@ const compiler = webpack([{
 			{
 				test: /\.css$/,
 				use: ['style-loader', 'css-loader']
+			},
+			{
+				test: /\.html$/,
+				use: [{
+					loader: 'file-loader',
+					options: {
+						name: '[name].[ext]'
+					}
+				}]
 			}
 		]
 	},
 	resolve: {
 		extensions: ['.js', '.jsx']
+	}
+};
+
+const compiler = webpack([{
+	...common,
+	target: 'electron-main',
+	entry: './src/main/main.js',
+	output: {
+		path: path.resolve(__dirname, 'app'),
+		filename: 'main.js'
+	}
+}, {
+	...common,
+	target: 'electron-preload',
+	entry: './src/main/preload.js',
+	output: {
+		path: path.resolve(__dirname, 'app'),
+		filename: 'preload.js'
+	}
+}, {
+	...common,
+	target: 'electron-renderer',
+	entry: './src/renderer/renderer.jsx',
+	output: {
+		path: path.resolve(__dirname, 'app'),
+		filename: 'renderer.js'
 	}
 }]);
 
