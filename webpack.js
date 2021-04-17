@@ -61,10 +61,10 @@ const compiler = webpack([{
 }, {
 	...common,
 	target: 'electron-renderer',
-	entry: './src/renderer/renderer.jsx',
+	entry: './src/renderer/index.jsx',
 	output: {
 		path: path.resolve(__dirname, 'app'),
-		filename: 'renderer.js'
+		filename: 'index.js'
 	}
 }]);
 
