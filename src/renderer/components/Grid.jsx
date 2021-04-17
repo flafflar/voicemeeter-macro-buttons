@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
-import './grid.css';
+import './grid.css'
 
 import Pad from './Pad'
 
@@ -10,7 +11,7 @@ import Pad from './Pad'
  *
  * @augments {Component<Props, State>}
  */
-export default class Grid extends Component {
+class Grid extends Component {
 	constructor(props){
 		super(props);
 	}
@@ -35,3 +36,7 @@ Grid.propTypes = {
 		pushButton: PropTypes.bool.isRequired
 	}))
 }
+
+export default connect((state) => ({
+	padInfo: state.pads
+}))(Grid)
