@@ -10,8 +10,6 @@ stack: node $(nodejs_version)
 
 version: 0.0.0.{build}
 
-build: off
-
 for:
 -
   matrix:
@@ -86,9 +84,8 @@ for:
     - path: dist/latest-mac.yml
       name: macOS update file
 
-test_script:
+build_script:
 - npm run build
-- npm test
 
 deploy:
   release: Draft
