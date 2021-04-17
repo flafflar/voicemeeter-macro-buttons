@@ -10,82 +10,29 @@ stack: node $(nodejs_version)
 
 version: 0.0.0.{build}
 
-for:
--
-  matrix:
-    only:
-      - image: Visual Studio 2019
+cache:
+- '%LOCALAPPDATA%/electron/cache'
+- '%LOCALAPPDATA%/electron-builder/cache'
 
-  cache:
-  - '%LOCALAPPDATA%/electron/cache'
-  - '%LOCALAPPDATA%/electron-builder/cache'
-
-  install:
-  - ps: Install-Product node $env:nodejs_version
-  - cmd: node --version
-  - cmd: npm --version
-  - cmd: npm ci
-
-  artifacts:
-    - path: dist/*.exe
-      name: Windows installer
-
-    - path: dist/*.exe.blockmap
-      name: Windows installer blockmap
-
-    - path: dist/latest.yml
-      name: Windows update file
-
--
-  matrix:
-    only:
-      - image: Ubuntu
-
-  cache:
-  - $HOME/.npm
-  - $HOME/.cache/electron
-
-  install:
-  - node --version
-  - npm --version
-  - npm ci
-
-  artifacts:
-    - path: dist/*.snap
-      name: snap
-
-    - path: dist/*.AppImage
-      name: AppImage
-
-    - path: dist/latest-linux.yml
-      name: Linux update file
-
--
-  matrix:
-    only:
-      - image: macOS
-
-  cache:
-  - $HOME/.npm
-  - $HOME/Library/Caches/electron
-
-  install:
-  - node --version
-  - npm --version
-  - npm ci
-
-  artifacts:
-    - path: dist/*.dmg
-      name: macOS installer
-
-    - path: dist/*.dmg.blockmap
-      name: macOS installer blockmap
-
-    - path: dist/latest-mac.yml
-      name: macOS update file
+install:
+- ps: Install-Product node $env:nodejs_version
+- cmd: node --version
+- cmd: npm --version
+- cmd: npm ci
 
 build_script:
 - npm run build
+
+artifacts:
+  - path: dist/*.exe
+    name: Installer
+
+  - path: dist/*.exe.blockmap
+    name: Installer blockmap
+
+  - path: dist/latest.yml
+    name: Update file
+
 
 deploy:
   release: Draft
