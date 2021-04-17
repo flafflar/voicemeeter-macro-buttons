@@ -19,6 +19,7 @@ class Grid extends Component {
 	render(){
 		let pads = this.props.padInfo.map(info => (
 			<Pad
+				id={info.id}
 				pushButton={info.pushButton}
 				label={info.label}
 				key={info.id}

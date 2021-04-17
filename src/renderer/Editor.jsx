@@ -6,6 +6,6 @@ export default class Editor extends Component {
 	}
 
 	render(){
-		return <h1>Test</h1>;
+		return <h1>{new URL(location).searchParams.get('id')}</h1>;
 	}
 }

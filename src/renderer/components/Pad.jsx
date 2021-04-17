@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import './pad.css';
+import padEditor from '../pad-editor.html'
 
 /**
  * Renders a pad button
@@ -41,6 +42,11 @@ export default class Pad extends Component {
 				this.setState({active: !this.state.active})
 			}
 		}
+		// Right click
+		else if (event.button === 2){
+			// Open the pad editor for the pad
+			window.open(`${padEditor}?id=${this.props.id}`);
+		}
 	}
 
 	/** @param {MouseEvent} event */
@@ -72,6 +78,8 @@ export default class Pad extends Component {
 }
 
 Pad.propTypes = {
+	/** The ID of the pad */
+	id: PropTypes.number.isRequired,
 	/** Whether the pad acts as a push button or a 2-position button */
 	pushButton: PropTypes.bool.isRequired,
 	/** The label that will appear on the pad */
