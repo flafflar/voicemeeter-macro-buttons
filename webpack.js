@@ -69,7 +69,7 @@ const compiler = webpack([{
 }, {
 	...common,
 	target: 'electron-renderer',
-	entry: './src/renderer/pad-editor.js',
+	entry: './src/renderer/pad-editor.jsx',
 	output: {
 		path: path.resolve(__dirname, 'app'),
 		filename: 'pad-editor.js'
