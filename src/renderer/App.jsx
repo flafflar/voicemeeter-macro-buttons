@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import Grid from './components/Grid'
+import PadEditor from './components/PadEditor'
 
 export default class App extends Component {
 	constructor(props){
@@ -8,6 +9,9 @@ export default class App extends Component {
 	}
 
 	render(){
-		return <Grid />
+		return (<>
+			<Grid />
+			<PadEditor />
+		</>);
 	}
 }
