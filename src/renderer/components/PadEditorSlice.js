@@ -12,10 +12,13 @@ export const PadEditorSlice = createSlice({
 		open: (state, action) => {
 			state.open = true;
 			state.id = action.payload
+		},
+		close: (state, action) => {
+			state.open = false;
 		}
 	}
 })
 
-export const { open } = PadEditorSlice.actions
+export const {open, close} = PadEditorSlice.actions
 
 export default PadEditorSlice.reducer
