@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
-import './pad.css';
-import padEditor from '../pad-editor.html'
+import './pad.css'
+
+import {open} from './PadEditorSlice'
 
 /**
  * Renders a pad button
  * @augments {Component<Props, State>}
  */
-export default class Pad extends Component {
+class Pad extends Component {
 	constructor(props){
 		super(props);
 
@@ -45,7 +47,7 @@ export default class Pad extends Component {
 		// Right click
 		else if (event.button === 2){
 			// Open the pad editor for the pad
-			window.open(`${padEditor}?id=${this.props.id}`);
+			this.props.dispatch(open(this.props.id));
 		}
 	}
 
@@ -85,3 +87,5 @@ Pad.propTypes = {
 	/** The label that will appear on the pad */
 	label: PropTypes.string
 }
+
+export default connect()(Pad)
