@@ -26,8 +26,8 @@ class PadEditor extends Component {
 	render(){
 		return (
 			<div id='pad-editor' className={this.props.open ? '' : 'hidden'}>
-				<div class='input'>
-					<label for='pad-label'>Label:</label>
+				<div className='input'>
+					<label htmlFor='pad-label'>Label:</label>
 					<input
 						id='pad-label'
 						type='text'
@@ -35,8 +35,8 @@ class PadEditor extends Component {
 						onChange={this.onLabelChange.bind(this)}
 					/>
 				</div>
-				<div class='input'>
-					<label for='pad-type'>Type:</label>
+				<div className='input'>
+					<label htmlFor='pad-type'>Type:</label>
 					<select id='pad-type'>
 						<option>Push button</option>
 						<option>2 positions</option>
