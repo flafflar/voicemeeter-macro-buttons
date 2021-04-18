@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 export const PadEditorSlice = createSlice({
-	name: 'pad-editor',
+	name: 'padEditor',
 	initialState: {
 		/** Whether the editor is open */
 		open: false,
