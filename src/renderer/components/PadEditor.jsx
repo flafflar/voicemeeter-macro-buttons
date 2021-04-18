@@ -52,7 +52,11 @@ PadEditor.propTypes = {
 	/** Whether the editor is open or not */
 	open: PropTypes.bool.isRequired,
 	/** The pad to edit */
-	pad: PropTypes.number.isRequired
+	pad: PropTypes.shape({
+		id: PropTypes.number.isRequired,
+		pushButton: PropTypes.bool.isRequired,
+		label: PropTypes.string.isRequired
+	})
 }
 
 export default connect((state) => ({
