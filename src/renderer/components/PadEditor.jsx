@@ -42,7 +42,9 @@ class PadEditor extends Component {
 						<option>2 positions</option>
 					</select>
 				</div>
-				<div className='button' onClick={this.close.bind(this)}>OK</div>
+				<div style={{gridArea: 'bottom-row/last-col', justifySelf: 'end'}}>
+					<div className='button' onClick={this.close.bind(this)}>OK</div>
+				</div>
 			</div>
 		);
 	}

@@ -5,4 +5,31 @@
 	left: 0;
 	right: 0;
 	background-color: #eee;
+	display: grid;
+	grid-template-columns: 1fr [last-col] 1fr;
+	grid-template-rows: 1fr [bottom-row] 2em;
+	padding: 0.5em;
+	column-gap: 0.5em;
+}
+
+#pad-editor .input {
+}
+
+#pad-editor .input label {
+	display: block;
+	background-color: #555;
+	color: white;
+	font-size: 1em;
+	padding: 0.25em 0.5em;
+	margin-bottom: 0.25em;
+}
+
+#pad-editor .input input,
+#pad-editor .input select {
+	box-sizing: border-box;
+	width: 100%;
+	font-size: 1em;
+	padding: 2px 4px;
+	border: 1px solid #777;
+	border-radius: 2px;
 }
