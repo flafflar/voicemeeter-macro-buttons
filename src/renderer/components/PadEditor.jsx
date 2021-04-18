@@ -26,13 +26,22 @@ class PadEditor extends Component {
 	render(){
 		return (
 			<div id='pad-editor' className={this.props.open ? '' : 'hidden'}>
-				<label for='pad-label'>Label:</label>
-				<input
-					id='pad-label'
-					type='text'
-					value={this.props.pad.label}
-					onChange={this.onLabelChange.bind(this)}
-				/>
+				<div class='input'>
+					<label for='pad-label'>Label:</label>
+					<input
+						id='pad-label'
+						type='text'
+						value={this.props.pad.label}
+						onChange={this.onLabelChange.bind(this)}
+					/>
+				</div>
+				<div class='input'>
+					<label for='pad-type'>Type:</label>
+					<select id='pad-type'>
+						<option>Push button</option>
+						<option>2 positions</option>
+					</select>
+				</div>
 				<div className='button' onClick={this.close.bind(this)}>OK</div>
 			</div>
 		);
