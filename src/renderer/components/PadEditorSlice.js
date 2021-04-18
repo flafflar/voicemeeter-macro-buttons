@@ -6,7 +6,7 @@ export const PadEditorSlice = createSlice({
 		/** Whether the editor is open */
 		open: false,
 		/** The ID of the pad being edited */
-		id: null
+		id: 0
 	},
 	reducers: {
 		open: (state, action) => {
