@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
-import {changeLabel} from './PadSlice'
+import {changeLabel, changeType} from './PadSlice'
 import {close} from './PadEditorSlice'
 
 import './pad-editor.css'
@@ -23,6 +23,13 @@ class PadEditor extends Component {
 		}))
 	}
 
+	onTypeChange(event){
+		this.props.dispatch(changeType({
+			id: this.props.pad.id,
+			pushButton: event.target.value === 'push'
+		}))
+	}
+
 	render(){
 		return (
 			<div id='pad-editor' className={this.props.open ? '' : 'hidden'}>
@@ -37,9 +44,9 @@ class PadEditor extends Component {
 				</div>
 				<div className='input'>
 					<label htmlFor='pad-type'>Type:</label>
-					<select id='pad-type'>
-						<option>Push button</option>
-						<option>2 positions</option>
+					<select id='pad-type' onChange={this.onTypeChange.bind(this)}>
+						<option value='push' selected={this.props.pad.pushButton}>Push button</option>
+						<option value='2p' selected={!this.props.pad.pushButton}>2 positions</option>
 					</select>
 				</div>
 				<div style={{gridArea: 'bottom-row/last-col', justifySelf: 'end'}}>

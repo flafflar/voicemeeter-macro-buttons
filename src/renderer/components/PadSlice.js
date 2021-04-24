@@ -12,11 +12,16 @@ export const PadSlice = createSlice({
 	})),
 	reducers: {
 		changeLabel: (state, action) => {
+			console.log(action);
 			state.find(info => info.id === action.payload.id).label = action.payload.label
+		},
+		changeType: (state, action) => {
+			console.log(action);
+			state.find(info => info.id === action.payload.id).pushButton = action.payload.pushButton
 		}
 	}
 })
 
-export const { changeLabel } = PadSlice.actions
+export const { changeLabel, changeType } = PadSlice.actions
 
 export default PadSlice.reducer
