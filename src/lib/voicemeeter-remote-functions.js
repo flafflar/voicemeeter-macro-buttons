@@ -18,6 +18,7 @@ const functions = {
 	VBVMR_Login: [long, []],
 	VBVMR_Logout: [long, []],
 	VBVMR_RunVoicemeeter: [long, [longPtr]],
+	VBVMR_GetVoicemeeterType: [long, [longPtr]],
 	VBVMR_GetVoicemeeterVersion: [long, [longPtr]],
 	VBVMR_IsParametersDirty: [long, []],
 	VBVMR_GetParameterFloat: [long, [charPtr, floatPtr]],
