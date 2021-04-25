@@ -31,6 +31,18 @@ class VoicemeeterError extends Error {
 const API = {};
 
 /**
+ * The possible types of Voicemeeter applications
+ *
+ * @enum
+ */
+API.Types = {
+	Normal: 1,
+	Banana: 2,
+	Potato: 3,
+	Potato64: 6
+};
+
+/**
  * Opens a communication pipe with Voicemeeter
  *
  * Typically called on software startup
@@ -57,5 +69,19 @@ API.logout = function logout(){
 	let result = Remote.VBVMR_Logout();
 	return result === 0;
 }
+
+
+/**
+ * Runs the Voicemeeter application
+ *
+ * @param {API.Types} type The Voicemeeter type to run (@see API.Types)
+ */
+API.runVoicemeeter = function runVoicemeeter(type){
+	let result = Remote.VBVMR_RunVoicemeeter(type);
+	if (result === -1) throw new VoicemeeterError('Voicemeeter not installed');
+	if (result === -2) throw new VoicemeeterError('Unknown Voicemeeter type');
+}
+
+
 
 export default API
