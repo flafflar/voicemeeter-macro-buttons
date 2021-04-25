@@ -19,3 +19,43 @@ import functions from './voicemeeter-remote-functions'
  * The interface to the VoicemeeterRemote.dll
  */
 const Remote = ffi.Library(getDLLPath(), functions);
+
+/** A custom error class for errors in Voicemeeter */
+class VoicemeeterError extends Error {
+	constructor(message){
+		super(message);
+		this.name = 'VoicemeeterError';
+	}
+}
+
+const API = {};
+
+/**
+ * Opens a communication pipe with Voicemeeter
+ *
+ * Typically called on software startup
+ *
+ * @returns {boolean} Whether the Voicemeeter application is launched
+ * @throws {VoicemeeterError}
+ */
+API.login = function login(){
+	let result = Remote.VBVMR_Login();
+	if (result === -1) throw new VoicemeeterError('Cannot get client (unexpected)');
+	if (result === -2) throw new VoicemeeterError('Unexpected login (logout was expected before)');
+	if (result === 0) return true;
+	return false;
+}
+
+/**
+ * Closes the communication pipe with Voicemeeter
+ *
+ * Typically called on software end
+ *
+ * @returns {boolean} Whether the logout was successful
+ */
+API.logout = function logout(){
+	let result = Remote.VBVMR_Logout();
+	return result === 0;
+}
+
+export default API
