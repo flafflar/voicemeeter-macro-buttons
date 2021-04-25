@@ -11,3 +11,10 @@ function getDLLPath(){
 	let value = re.exec(out).groups.value;
 	return value;
 }
+
+import functions from './voicemeeter-remote-functions'
+
+/**
+ * The interface to the VoicemeeterRemote.dll
+ */
+const Remote = ffi.Library(getDLLPath(), functions);
