@@ -25,6 +25,7 @@
     "electron-builder": "^22.10.5",
     "file-loader": "^6.2.0",
     "mocha": "^8.3.2",
+    "node-loader": "^2.0.0",
     "spectron": "^14.0.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.31.2",
@@ -36,6 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.3"
+    "react-redux": "^7.2.3",
+    "ref-napi": "^3.0.2"
   }
 }
