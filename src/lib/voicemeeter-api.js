@@ -118,4 +118,18 @@ API.getVoicemeeterVersion = function getVoicemeeterVersion(){
 	return v1 + '.' + v2 + '.' + v3 + '.' + v4;
 }
 
+/**
+ * Checks if any parameters have changed
+ *
+ * @returns {boolean} Whether any parameters have changed
+ * @throws {VoicemeeterError} If no Voicemeeter application is running
+ * @throws {VoicemeeterError} On unexpected errors
+ */
+API.isParametersDirty = function isParametersDirty(){
+	let result = Remote.VBVMR_IsParametersDirty();
+	if (result === -1) throw new VoicemeeterError('Cannot get client (unexpected)');
+	if (result === -2) throw new VoicemeeterError('No server');
+	return result === 1;
+}
+
 export default API
