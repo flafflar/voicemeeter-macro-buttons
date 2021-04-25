@@ -1,6 +1,7 @@
 import path from 'path'
 import {execSync} from 'child_process'
 import ffi from 'ffi-napi'
+import ref from 'ref-napi'
 
 /**
  * Locates the VoicemeeterRemote.dll file and returns its path
@@ -14,6 +15,7 @@ function getDLLPath(){
 }
 
 import functions from './voicemeeter-remote-functions'
+import {func} from 'prop-types';
 
 /**
  * The interface to the VoicemeeterRemote.dll
@@ -70,7 +72,6 @@ API.logout = function logout(){
 	return result === 0;
 }
 
-
 /**
  * Runs the Voicemeeter application
  *
@@ -82,6 +83,20 @@ API.runVoicemeeter = function runVoicemeeter(type){
 	if (result === -2) throw new VoicemeeterError('Unknown Voicemeeter type');
 }
 
+/**
+ * Gets the type of the currently running Voicemeeter application
+ *
+ * @returns {API.Types} The type of the Voicemeeter application
+ * @throws {VoicemeeterError} If no Voicemeeter application is running
+ * @throws {VoicemeeterError} On unexpected errors
+ */
+API.getVoicemeeterType = function getVoicemeeterType(){
+	let type = ref.alloc('long');
+	let result = Remote.VBVMR_GetVoicemeeterType(type);
+	if (result === -1) throw new VoicemeeterError('Cannot get client (unexpected)');
+	if (result === -2) throw new VoicemeeterError('No server');
+	return type.deref();
+}
 
 
 export default API
