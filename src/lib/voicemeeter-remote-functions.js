@@ -15,11 +15,11 @@ const
 
 
 const functions = {
-	VBVMR_Login: [long],
-	VBVMR_Logout: [long],
+	VBVMR_Login: [long, []],
+	VBVMR_Logout: [long, []],
 	VBVMR_RunVoicemeeter: [long, [longPtr]],
 	VBVMR_GetVoicemeeterVersion: [long, [longPtr]],
-	VBVMR_IsParametersDirty: [long],
+	VBVMR_IsParametersDirty: [long, []],
 	VBVMR_GetParameterFloat: [long, [charPtr, floatPtr]],
 	VBVMR_GetParameterStringA: [long, [charPtr, charPtr]],
 	VBVMR_GetParameterStringW: [long, [charPtr, uShortPtr]],
@@ -30,10 +30,10 @@ const functions = {
 	VBVMR_SetParameterStringW: [long, [charPtr, uShortPtr]],
 	VBVMR_SetParameters: [long, [charPtr]],
 	VBVMR_SetParametersW: [long, [uShortPtr]],
-	VBVMR_Output_GetDeviceNumber: [long],
+	VBVMR_Output_GetDeviceNumber: [long, []],
 	VBVMR_Output_GetDeviceDescA: [long, [long, longPtr, charPtr, charPtr]],
 	VBVMR_Output_GetDeviceDescW: [long, [long, longPtr, uShortPtr, uShortPtr]],
-	VBVMR_Input_GetDeviceNumber: [long],
+	VBVMR_Input_GetDeviceNumber: [long, []],
 	VBVMR_Input_GetDeviceDescA: [long, [long, longPtr, charPtr, charPtr]],
 	VBVMR_Input_GetDeviceDescW: [long, [long, longPtr, uShortPtr, uShortPtr]]
 }
