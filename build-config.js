@@ -10,7 +10,11 @@ const secondPackage = {
 	version: package.version,
 	description: package.description,
 	author: package.author,
-	main: path.relative(secondPackageDir, package.main)
+	main: path.relative(secondPackageDir, package.main),
+	dependencies: {
+		'ffi-napi': package.dependencies['ffi-napi'],
+		'ref-napi': package.dependencies['ref-napi']
+	}
 };
 fs.writeFileSync(
 	path.join(secondPackageDir, 'package.json'), // Path of the second package.json

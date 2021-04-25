@@ -10,6 +10,10 @@ const common = {
 		__filename: false
 	},
 	devtool: 'source-map',
+	externals: {
+		'ref-napi': 'commonjs2 ref-napi',
+		'ffi-napi': 'commonjs2 ffi-napi',
+	},
 	module: {
 		rules: [
 			{
@@ -21,6 +25,10 @@ const common = {
 						presets: ['@babel/preset-react']
 					}
 				}]
+			},
+			{
+				test: /\.node$/,
+				use: 'node-loader'
 			},
 			{
 				test: /\.css$/,
