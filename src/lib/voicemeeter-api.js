@@ -98,5 +98,24 @@ API.getVoicemeeterType = function getVoicemeeterType(){
 	return type.deref();
 }
 
+/**
+ * Returns the version of the Voicemeeter application
+ *
+ * @returns {string} The version of the Voicemeeter application
+ * @throws {VoicemeeterError} If no Voicemeeter application is running
+ * @throws {VoicemeeterError} On unexpected errors
+ */
+API.getVoicemeeterVersion = function getVoicemeeterVersion(){
+	let pVersion = ref.alloc('long');
+	let result = Remote.VBVMR_GetVoicemeeterVersion(pVersion);
+	if (result === -1) throw new VoicemeeterError('Cannot get client (unexpected)');
+	if (result === -2) throw new VoicemeeterError('No server');
+	let version = pVersion.deref();
+	let v1 = (version & 0xFF000000)>>24,
+		v2 = (version & 0x00FF0000)>>16,
+		v3 = (version & 0x0000FF00)>>8,
+		v4 = version & 0x000000FF;
+	return v1 + '.' + v2 + '.' + v3 + '.' + v4;
+}
 
 export default API
