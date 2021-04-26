@@ -15,7 +15,6 @@ function getDLLPath(){
 }
 
 import functions from './voicemeeter-remote-functions'
-import {func} from 'prop-types';
 
 /**
  * The interface to the VoicemeeterRemote.dll
@@ -43,6 +42,369 @@ API.Types = {
 	Potato: 3,
 	Potato64: 6
 };
+
+/**
+ * The possible positions to get the audio level from
+ *
+ * @enum
+ */
+API.LevelTypes = {
+	PreFader: 0,
+	PostFader: 1,
+	PostMute: 2,
+	Output: 3
+}
+
+/**
+ * The possible channels per Voicemeeter type
+ *
+ * @namespace
+ */
+API.Channels = {
+	[API.Types.Normal]: {
+		Strip1: {Left: 0, Right: 1},
+		Strip2: {Left: 2, Right: 3},
+		VirtualInput1: {
+			Left: 4,
+			Right: 5,
+			Center: 6,
+			LF: 7,
+			SideLeft: 8,
+			SideRight: 9,
+			RearLeft: 10,
+			RearRight: 11
+		},
+		Output1: {
+			Left: 0,
+			Right: 1,
+			Center: 2,
+			LF: 3,
+			SideLeft: 4,
+			SideRight: 5,
+			RearLeft: 6,
+			RearRight: 7
+		},
+		VirtualOutput1: {
+			Left: 8,
+			Right: 9,
+			Center: 10,
+			LF: 11,
+			SideLeft: 12,
+			SideRight: 13,
+			RearLeft: 14,
+			RearRight: 15
+		}
+	},
+	[API.Types.Banana]: {
+		Strip1: {Left: 0, Right: 1},
+		Strip2: {Left: 2, Right: 3},
+		Strip3: {Left: 4, Right: 5},
+		VirtualInput1: {
+			Left: 6,
+			Right: 7,
+			Center: 8,
+			LF: 9,
+			SideLeft: 10,
+			SideRight: 11,
+			RearLeft: 12,
+			RearRight: 13
+		},
+		VirtualInput2: {
+			Left: 14,
+			Right: 15,
+			Center: 16,
+			LF: 17,
+			SideLeft: 18,
+			SideRight: 19,
+			RearLeft: 20,
+			RearRight: 21
+		},
+		Output1: {
+			Left: 0,
+			Right: 1,
+			Center: 2,
+			LF: 3,
+			SideLeft: 4,
+			SideRight: 5,
+			RearLeft: 6,
+			RearRight: 7
+		},
+		Output2: {
+			Left: 8,
+			Right: 9,
+			Center: 10,
+			LF: 11,
+			SideLeft: 12,
+			SideRight: 13,
+			RearLeft: 14,
+			RearRight: 15
+		},
+		Output3: {
+			Left: 16,
+			Right: 17,
+			Center: 18,
+			LF: 19,
+			SideLeft: 20,
+			SideRight: 21,
+			RearLeft: 22,
+			RearRight: 23
+		},
+		VirtualOutput1: {
+			Left: 24,
+			Right: 25,
+			Center: 26,
+			LF: 27,
+			SideLeft: 28,
+			SideRight: 29,
+			RearLeft: 30,
+			RearRight: 31
+		},
+		VirtualOutput2: {
+			Left: 32,
+			Right: 33,
+			Center: 34,
+			LF: 35,
+			SideLeft: 36,
+			SideRight: 37,
+			RearLeft: 38,
+			RearRight: 39
+		}
+	},
+	[API.Types.Potato]: {
+		Strip1: {Left: 0, Right: 1},
+		Strip2: {Left: 2, Right: 3},
+		Strip3: {Left: 4, Right: 5},
+		Strip4: {Left: 6, Right: 7},
+		Strip5: {Left: 8, Right: 9},
+		VirtualInput1: {
+			Left: 10,
+			Right: 11,
+			Center: 12,
+			LF: 13,
+			SideLeft: 14,
+			SideRight: 15,
+			RearLeft: 16,
+			RearRight: 17
+		},
+		VirtualInput2: {
+			Left: 18,
+			Right: 19,
+			Center: 20,
+			LF: 21,
+			SideLeft: 22,
+			SideRight: 23,
+			RearLeft: 24,
+			RearRight: 25
+		},
+		VirtualInput3: {
+			Left: 26,
+			Right: 27,
+			Center: 28,
+			LF: 29,
+			SideLeft: 30,
+			SideRight: 31,
+			RearLeft: 32,
+			RearRight: 33
+		},
+		Output1: {
+			Left: 0,
+			Right: 1,
+			Center: 2,
+			LF: 3,
+			SideLeft: 4,
+			SideRight: 5,
+			RearLeft: 6,
+			RearRight: 7
+		},
+		Output2: {
+			Left: 8,
+			Right: 9,
+			Center: 10,
+			LF: 11,
+			SideLeft: 12,
+			SideRight: 13,
+			RearLeft: 14,
+			RearRight: 15
+		},
+		Output3: {
+			Left: 16,
+			Right: 17,
+			Center: 18,
+			LF: 19,
+			SideLeft: 20,
+			SideRight: 21,
+			RearLeft: 22,
+			RearRight: 23
+		},
+		Output4: {
+			Left: 24,
+			Right: 25,
+			Center: 26,
+			LF: 27,
+			SideLeft: 28,
+			SideRight: 29,
+			RearLeft: 30,
+			RearRight: 31
+		},
+		Output5: {
+			Left: 32,
+			Right: 33,
+			Center: 34,
+			LF: 35,
+			SideLeft: 36,
+			SideRight: 37,
+			RearLeft: 38,
+			RearRight: 39
+		},
+		VirtualOutput1: {
+			Left: 40,
+			Right: 41,
+			Center: 42,
+			LF: 43,
+			SideLeft: 44,
+			SideRight: 45,
+			RearLeft: 46,
+			RearRight: 47
+		},
+		VirtualOutput2: {
+			Left: 48,
+			Right: 49,
+			Center: 50,
+			LF: 51,
+			SideLeft: 52,
+			SideRight: 53,
+			RearLeft: 54,
+			RearRight: 55
+		},
+		VirtualOutput3: {
+			Left: 56,
+			Right: 57,
+			Center: 58,
+			LF: 59,
+			SideLeft: 60,
+			SideRight: 61,
+			RearLeft: 62,
+			RearRight: 63
+		}
+	},
+	[API.Types.Potato64]: {
+		Strip1: {Left: 0, Right: 1},
+		Strip2: {Left: 2, Right: 3},
+		Strip3: {Left: 4, Right: 5},
+		Strip4: {Left: 6, Right: 7},
+		Strip5: {Left: 8, Right: 9},
+		VirtualInput1: {
+			Left: 10,
+			Right: 11,
+			Center: 12,
+			LF: 13,
+			SideLeft: 14,
+			SideRight: 15,
+			RearLeft: 16,
+			RearRight: 17
+		},
+		VirtualInput2: {
+			Left: 18,
+			Right: 19,
+			Center: 20,
+			LF: 21,
+			SideLeft: 22,
+			SideRight: 23,
+			RearLeft: 24,
+			RearRight: 25
+		},
+		VirtualInput3: {
+			Left: 26,
+			Right: 27,
+			Center: 28,
+			LF: 29,
+			SideLeft: 30,
+			SideRight: 31,
+			RearLeft: 32,
+			RearRight: 33
+		},
+		Output1: {
+			Left: 0,
+			Right: 1,
+			Center: 2,
+			LF: 3,
+			SideLeft: 4,
+			SideRight: 5,
+			RearLeft: 6,
+			RearRight: 7
+		},
+		Output2: {
+			Left: 8,
+			Right: 9,
+			Center: 10,
+			LF: 11,
+			SideLeft: 12,
+			SideRight: 13,
+			RearLeft: 14,
+			RearRight: 15
+		},
+		Output3: {
+			Left: 16,
+			Right: 17,
+			Center: 18,
+			LF: 19,
+			SideLeft: 20,
+			SideRight: 21,
+			RearLeft: 22,
+			RearRight: 23
+		},
+		Output4: {
+			Left: 24,
+			Right: 25,
+			Center: 26,
+			LF: 27,
+			SideLeft: 28,
+			SideRight: 29,
+			RearLeft: 30,
+			RearRight: 31
+		},
+		Output5: {
+			Left: 32,
+			Right: 33,
+			Center: 34,
+			LF: 35,
+			SideLeft: 36,
+			SideRight: 37,
+			RearLeft: 38,
+			RearRight: 39
+		},
+		VirtualOutput1: {
+			Left: 40,
+			Right: 41,
+			Center: 42,
+			LF: 43,
+			SideLeft: 44,
+			SideRight: 45,
+			RearLeft: 46,
+			RearRight: 47
+		},
+		VirtualOutput2: {
+			Left: 48,
+			Right: 49,
+			Center: 50,
+			LF: 51,
+			SideLeft: 52,
+			SideRight: 53,
+			RearLeft: 54,
+			RearRight: 55
+		},
+		VirtualOutput3: {
+			Left: 56,
+			Right: 57,
+			Center: 58,
+			LF: 59,
+			SideLeft: 60,
+			SideRight: 61,
+			RearLeft: 62,
+			RearRight: 63
+		}
+	}
+}
 
 /**
  * Opens a communication pipe with Voicemeeter
@@ -155,6 +517,30 @@ API.getParameter = function getParameter(name){
 		case -2: throw new VoicemeeterError('No server');
 		case -3: throw new VoicemeeterError('Unknown parameter');
 		case -5: throw new VoicemeeterError('Structure mismatch')
+	}
+}
+
+/**
+ * Returns the current audio level of a specific channel
+ *
+ * @param {API.LevelTypes} type The type of level to get (@see API.LevelTypes)
+ * @param {API.Channels} channel The targeted channel (depends on the type of
+ * the application, @see API.Channels)
+ * @returns {number} The level of the channel
+ * @throws {VoicemeeterError} If no level is available for the channel
+ * @throws {VoicemeeterError} If the selected channel is out of range
+ * @throws {VoicemeeterError} If no Voicemeeter application is running
+ * @throws {VoicemeeterError} On unexpected errors
+ */
+API.getLevel = function getLevel(type, channel){
+	let pValue = ref.alloc('float');
+	let result = Remote.VBVMR_GetLevel(type, channel, pValue);
+	switch (result) {
+		case 0: return pValue.deref();
+		case -1: throw new VoicemeeterError('Unspecified error');
+		case -2: throw new VoicemeeterError('No server');
+		case -3: throw new VoicemeeterError('No lever available');
+		case -4: throw new VoicemeeterError('Out of range');
 	}
 }
 
