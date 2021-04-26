@@ -544,4 +544,26 @@ API.getLevel = function getLevel(type, channel){
 	}
 }
 
+// TODO: Implement wrapper for VBVMR_GetMidiMessage
+
+/**
+ * Sets a parameter's value
+ *
+ * @param {string} name The name of the parameter
+ * @param {number|string} value The value to give to the parameter
+ * @throws {VoicemeeterError} If the parameter is not recognised
+ * @throws {VoicemeeterError} If no Voicemeeter application is running
+ * @throws {VoicemeeterError} On unexpected errors
+ */
+API.setParameter = function setParameter(name, value){
+	let szParamName = ref.allocCString(name);
+	let result;
+	if (typeof value === 'number'){
+		result = Remote.VBVMR_SetParameterFloat(szParamName, value);
+	} else if (typeof value === 'string'){
+		let szString = ref.allocCString(value);
+		result = Remote.VBVMR_SetParameterStringA(szParamName, szString);
+	}
+}
+
 export default API
