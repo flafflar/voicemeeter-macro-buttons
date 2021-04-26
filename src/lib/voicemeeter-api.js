@@ -132,4 +132,30 @@ API.isParametersDirty = function isParametersDirty(){
 	return result === 1;
 }
 
+/**
+ * Returns a parameter's value
+ *
+ * @param {string} name The name of the parameter
+ * @returns {number|string} The value of the parameter
+ */
+API.getParameter = function getParameter(name){
+
+	// First, try to get the parameter as a float
+	let szParamName = ref.allocCString(name);
+	let pValue = ref.alloc('float');
+	let result = Remote.VBVMR_GetParameterFloat(szParamName, pValue);
+	if (result === 0) return pValue.deref();
+
+	// Now, try to get the parameter as a string
+	let szString = Buffer.alloc(512);
+	result = Remote.VBVMR_GetParameterStringA(szParamName, szString);
+	if (result === 0) return ref.readCString(szString);
+
+	switch (result){
+		case -2: throw new VoicemeeterError('No server');
+		case -3: throw new VoicemeeterError('Unknown parameter');
+		case -5: throw new VoicemeeterError('Structure mismatch')
+	}
+}
+
 export default API
