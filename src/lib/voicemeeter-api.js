@@ -407,6 +407,18 @@ API.Channels = {
 }
 
 /**
+ * The possible device types
+ *
+ * @enum
+ */
+API.DeviceTypes = {
+	MME: 1,
+	WDM: 3,
+	KS: 4,
+	ASIO: 5
+}
+
+/**
  * Opens a communication pipe with Voicemeeter
  *
  * Typically called on software startup
@@ -565,5 +577,59 @@ API.setParameter = function setParameter(name, value){
 		result = Remote.VBVMR_SetParameterStringA(szParamName, szString);
 	}
 }
+
+/**
+ * Holds the info about a device
+ * @typedef {Object} DeviceInfo
+ * @property {API.DeviceTypes} type The type of the device
+ * @property {string} name The name of the device
+ * @property {string} hardwareId The hardware ID of the device
+ */
+
+/**
+ * Returns a list with info for the input devices
+ *
+ * @returns {DeviceInfo[]} The list of devices
+ */
+API.getInputDeviceInfo = function getInputDeviceInfo(){
+	let deviceNumber = Remote.VBVMR_Input_GetDeviceNumber();
+	let deviceInfo = new Array(deviceNumber);
+	for (let index = 0; index < deviceNumber; index++){
+		let nType = ref.alloc('long');
+		let szDeviceName = Buffer.alloc(1024);
+		let szHardwareId = Buffer.alloc(1024);
+		Remote.VBVMR_Input_GetDeviceDescA(index, nType, szDeviceName, szHardwareId);
+		deviceInfo[index] = {
+			type: nType.deref(),
+			name: szDeviceName.readCString(),
+			hardwareId: szHardwareId.readCString()
+		};
+	}
+	return deviceInfo;
+}
+
+/**
+ * Returns a list with info for the output devices
+ *
+ * @returns {DeviceInfo[]} The list of devices
+ */
+ API.getOutputDeviceInfo = function getOutputDeviceInfo(){
+	let deviceNumber = Remote.VBVMR_Output_GetDeviceNumber();
+	let deviceInfo = new Array(deviceNumber);
+	for (let index = 0; index < deviceNumber; index++){
+		let nType = ref.alloc('long');
+		let szDeviceName = Buffer.alloc(512);
+		let szHardwareId = Buffer.alloc(512);
+		Remote.VBVMR_Output_GetDeviceDescA(index, nType, szDeviceName, szHardwareId);
+		deviceInfo[index] = {
+			type: nType.deref(),
+			name: szDeviceName.readCString(),
+			hardwareId: szHardwareId.readCString()
+		};
+	}
+	return deviceInfo;
+}
+
+// TODO: Implement VB-Audio Callback
 
 export default API
