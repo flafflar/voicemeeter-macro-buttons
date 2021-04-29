@@ -1098,6 +1098,24 @@ class Voicemeeter {
 		return API.isParametersDirty();
 	}
 
+	/**
+	 * Information about the input devices currently available
+	 *
+	 * @type {DeviceInfo[]}
+	 */
+	get inputDevices(){
+		return API.getInputDeviceInfo();
+	}
+
+	/**
+	 * Information about the output devices currently available
+	 *
+	 * @type {DeviceInfo[]}
+	 */
+	get outputDevices(){
+		return API.getOutputDeviceInfo();
+	}
+
 }
 
 export default API
