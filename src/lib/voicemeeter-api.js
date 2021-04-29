@@ -412,13 +412,13 @@ API.Channels = {
 /**
  * The possible device types
  *
- * @enum {number}
+ * @enum {string}
  */
-API.DeviceTypes = {
-	MME: 1,
-	WDM: 3,
-	KS: 4,
-	ASIO: 5
+const DeviceTypes = {
+	1: 'MME',
+	3: 'WDM',
+	4: 'KS',
+	5: 'ASIO'
 }
 
 /**
@@ -584,7 +584,7 @@ API.setParameter = function setParameter(name, value){
 /**
  * Holds the info about a device
  * @typedef {Object} DeviceInfo
- * @property {API.DeviceTypes} type The type of the device
+ * @property {string} type The type of the device
  * @property {string} name The name of the device
  * @property {string} hardwareId The hardware ID of the device
  */
@@ -603,7 +603,7 @@ API.getInputDeviceInfo = function getInputDeviceInfo(){
 		let szHardwareId = Buffer.alloc(1024);
 		Remote.VBVMR_Input_GetDeviceDescA(index, nType, szDeviceName, szHardwareId);
 		deviceInfo[index] = {
-			type: nType.deref(),
+			type: DeviceTypes[nType.deref()],
 			name: szDeviceName.readCString(),
 			hardwareId: szHardwareId.readCString()
 		};
@@ -616,7 +616,7 @@ API.getInputDeviceInfo = function getInputDeviceInfo(){
  *
  * @returns {DeviceInfo[]} The list of devices
  */
- API.getOutputDeviceInfo = function getOutputDeviceInfo(){
+API.getOutputDeviceInfo = function getOutputDeviceInfo(){
 	let deviceNumber = Remote.VBVMR_Output_GetDeviceNumber();
 	let deviceInfo = new Array(deviceNumber);
 	for (let index = 0; index < deviceNumber; index++){
@@ -625,7 +625,7 @@ API.getInputDeviceInfo = function getInputDeviceInfo(){
 		let szHardwareId = Buffer.alloc(512);
 		Remote.VBVMR_Output_GetDeviceDescA(index, nType, szDeviceName, szHardwareId);
 		deviceInfo[index] = {
-			type: nType.deref(),
+			type: DeviceTypes[nType.deref()],
 			name: szDeviceName.readCString(),
 			hardwareId: szHardwareId.readCString()
 		};
