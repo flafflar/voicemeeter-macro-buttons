@@ -682,5 +682,13 @@ class Voicemeeter {
 		return API.getVoicemeeterVersion();
 	}
 
+	/**
+	 * The type of the Voicemeeter application currently running
+	 *
+	 * @type {API.Types}
+	 */
+	get type(){
+		return API.getVoicemeeterType();
+	}
 }
 export default API
