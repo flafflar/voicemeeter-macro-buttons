@@ -673,5 +673,14 @@ class Voicemeeter {
 		this.loggedIn = false;
 	}
 
+	/**
+	 * Voicemeeter's version
+	 *
+	 * @type {string}
+	 */
+	get version(){
+		return API.getVoicemeeterVersion();
+	}
+
 }
 export default API
