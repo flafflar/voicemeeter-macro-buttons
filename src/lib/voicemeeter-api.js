@@ -1088,5 +1088,16 @@ class Voicemeeter {
 	get type(){
 		return API.getVoicemeeterType();
 	}
+
+	/**
+	 * Whether any parameter has changed since last check
+	 *
+	 * @type {boolean}
+	 */
+	get haveParametersChanged(){
+		return API.isParametersDirty();
+	}
+
 }
+
 export default API
