@@ -20,8 +20,7 @@ install:
 - cmd: npm --version
 - cmd: curl https://download.vb-audio.com/Download_CABLE/Voicemeeter8Setup.exe -o Voicemeeter8Setup.exe
 - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-- cmd: choco install voicemeeter.portable
-- cmd: "\"C:/Program Files (x86)/VB/Voicemeeter/Voicemeeter.exe\""
+- cmd: cscript InstallVoicemeeter.vbs
 - cmd: npm ci
 
 build_script:
