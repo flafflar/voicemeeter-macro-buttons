@@ -632,4 +632,46 @@ API.getInputDeviceInfo = function getInputDeviceInfo(){
 
 // TODO: Implement VB-Audio Callback
 
+/**
+ * A handler for a connection to the Voicemeeter API
+ */
+class Voicemeeter {
+
+	/**
+	 * Constructs a Voicemeeter instance and logins to Voicemeeter
+	 *
+	 * Always remember to log out when you are done using the API
+	 */
+	constructor(){
+
+		/**
+		 * Whether this instance is logged in to Voicemeeter
+		 * @type {boolean}
+		 */
+		this.loggedIn = false;
+
+		this.login();
+	}
+
+	/**
+	 * Logs in to the Voicemeeter API
+	 *
+	 * Automatically called on construction
+	 */
+	login(){
+		API.login();
+		this.loggedIn = true;
+	}
+
+	/**
+	 * Logs out of the Voicemeeer API
+	 *
+	 * Remember to call this function when you are done with the API
+	 */
+	logout(){
+		API.logout();
+		this.loggedIn = false;
+	}
+
+}
 export default API
