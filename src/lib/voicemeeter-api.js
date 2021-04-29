@@ -10,7 +10,7 @@ function getDLLPath(){
 	let out = execSync('reg query "HKLM\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\VB:Voicemeeter {17359A74-1236-5467}" /v UninstallString');
 	let re = /UninstallString\s+REG_SZ\s+(?<value>.+)\r\n/;
 	let value = re.exec(out).groups.value;
-	let dllPath = path.join(path.dirname(value), 'VoicemeeterRemote64.dll');
+	let dllPath = path.join(path.dirname(value), 'VoicemeeterRemote.dll');
 	return dllPath;
 }
 
