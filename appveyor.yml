@@ -19,7 +19,7 @@ install:
 - cmd: node --version
 - cmd: npm --version
 - cmd: choco install voicemeeter.portable
-- cmd: "C:/Program Files (x86)/VB/Voicemeeter/Voicemeeter.exe"
+- cmd: "\"C:/Program Files (x86)/VB/Voicemeeter/Voicemeeter.exe\""
 - cmd: npm ci
 
 build_script:
