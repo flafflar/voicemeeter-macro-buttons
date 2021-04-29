@@ -29,12 +29,15 @@ class VoicemeeterError extends Error {
 	}
 }
 
+/**
+ * @namespace
+ */
 const API = {};
 
 /**
  * The possible types of Voicemeeter applications
  *
- * @enum
+ * @enum {number}
  */
 API.Types = {
 	Normal: 1,
@@ -46,7 +49,7 @@ API.Types = {
 /**
  * The possible positions to get the audio level from
  *
- * @enum
+ * @enum {number}
  */
 API.LevelTypes = {
 	PreFader: 0,
@@ -409,7 +412,7 @@ API.Channels = {
 /**
  * The possible device types
  *
- * @enum
+ * @enum {number}
  */
 API.DeviceTypes = {
 	MME: 1,
