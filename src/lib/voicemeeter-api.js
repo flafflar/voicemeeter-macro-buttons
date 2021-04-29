@@ -1043,6 +1043,12 @@ class Voicemeeter {
 		this.loggedIn = false;
 
 		this.login();
+
+		/**
+		 * An array holding all the strips of the Voicemeeter
+		 * @type {Strip[]}
+		 */
+		this.Strip = new Array(Strip.Lengths[this.type].total).fill().map((_, i) => new Strip(this, i));
 	}
 
 	/**
