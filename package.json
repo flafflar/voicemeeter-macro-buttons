@@ -6,7 +6,7 @@
   "private": true,
   "main": "app/main.js",
   "scripts": {
-    "test": "node build-config && xvfb-maybe mocha",
+    "test": "node build-config && node webpack --dev && xvfb-maybe mocha test/*.spec.js",
     "start": "electron app/main.js",
     "bundle:dev": "node webpack --dev",
     "bundle:prod": "node webpack --prod",
@@ -25,6 +25,7 @@
     "electron": "^12.0.0",
     "electron-builder": "^22.10.5",
     "file-loader": "^6.2.0",
+    "glob": "^7.1.6",
     "mocha": "^8.3.2",
     "node-loader": "^2.0.0",
     "spectron": "^14.0.0",

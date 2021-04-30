@@ -4,3 +4,6 @@ node_modules
 # Ignore distribution directory
 dist
 app/*
+
+# Ignore test bundle
+test/bundle.spec.js

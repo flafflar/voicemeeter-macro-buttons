@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const glob = require('glob')
 
 let mode = process.argv.includes('--dev') ? 'development' : 'production';
 
@@ -73,6 +74,15 @@ const compiler = webpack([{
 	output: {
 		path: path.resolve(__dirname, 'app'),
 		filename: 'renderer.js'
+	}
+}, {
+	...common,
+	target: 'node',
+	devtool: undefined,
+	entry: glob.sync('./test/*.test.js'),
+	output: {
+		path: path.resolve(__dirname, 'test'),
+		filename: 'bundle.spec.js',
 	}
 }]);
 
