@@ -484,3 +484,5 @@ class Voicemeeter {
 	}
 
 }
+
+export default Voicemeeter;
