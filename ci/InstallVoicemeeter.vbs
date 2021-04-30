@@ -15,7 +15,3 @@ WshShell.Run "Voicemeeter8Setup.exe"
 WshShell.AppActivate "VB-AUDIO Voicemeeeter Installation"
 WScript.Sleep(2000)
 WshShell.SendKeys "{ENTER}"
-Do While IsInstallerRunning()
-	WScript.Sleep(1000)
-	WshShell.SendKeys "{ENTER}"
-Loop
