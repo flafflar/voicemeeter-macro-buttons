@@ -18,10 +18,18 @@ install:
 - ps: Install-Product node $env:nodejs_version
 - cmd: node --version
 - cmd: npm --version
+- cmd: curl https://download.vb-audio.com/Download_CABLE/Voicemeeter8Setup.exe -o Voicemeeter8Setup.exe
+- cmd: cscript ci/InstallVoicemeeter.vbs
 - cmd: npm ci
 
 build_script:
 - npm run build
+
+before_test:
+- cscript ci/LaunchVoicemeeter.vbs
+
+test_script:
+- npm test
 
 artifacts:
   - path: dist/*.exe
