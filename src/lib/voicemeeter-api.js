@@ -363,6 +363,26 @@ class Strip {
 		].filter(name => !!name).forEach(name => generateStringProperty(name));
 
 	}
+
+	/**
+	 * Gradually fades the audio to a specific level in a specific duration
+	 *
+	 * @param {number} dBTarget The desired level to fade the strip to
+	 * @param {number} time The duration of the fade, in milliseconds
+	 */
+	FadeTo(dBTarget, time){
+		Remote.setParameter(`Strip[${this.index}].FadeTo`, `(${dBTarget},${time})`);
+	}
+
+	/**
+	 * Gradually fades the audio by a specific amount in a specific duration
+	 *
+	 * @param {number} dBRelativeChange The amount to fade the strip by
+	 * @param {number} time The duration of the fade, in milliseconds
+	 */
+	 FadeBy(dBRelativeChange, time){
+		Remote.setParameter(`Strip[${this.index}].FadeBy`, `(${dBRelativeChange},${time})`);
+	}
 }
 
 /**
