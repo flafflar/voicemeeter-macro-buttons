@@ -122,9 +122,9 @@ describe('Voicemeeter API', function(){
 					VM.type >= Voicemeeter.Types.Banana ? testProperty('Gate', 'number') : testPropertyNegative('Gate');
 					VM.type >= Voicemeeter.Types.Banana ? testProperty('Karaoke', 'number') : testPropertyNegative('Karaoke');
 					VM.type >= Voicemeeter.Types.Banana ? testProperty('Limit', 'number') : testPropertyNegative('Limit');
-					strip.isVirtualStrip ? testProperty('EQGain1') : testPropertyNegative('EQGain1');
-					strip.isVirtualStrip ? testProperty('EQGain2') : testPropertyNegative('EQGain2');
-					strip.isVirtualStrip ? testProperty('EQGain3') : testPropertyNegative('EQGain3');
+					strip.isVirtualStrip ? testProperty('EQGain1', 'number') : testPropertyNegative('EQGain1');
+					strip.isVirtualStrip ? testProperty('EQGain2', 'number') : testPropertyNegative('EQGain2');
+					strip.isVirtualStrip ? testProperty('EQGain3', 'number') : testPropertyNegative('EQGain3');
 					testProperty('Label', 'string');
 					testProperty('A1', 'boolean');
 					VM.type >= Voicemeeter.Types.Banana ? testProperty('A2', 'boolean') : testPropertyNegative('A2');
