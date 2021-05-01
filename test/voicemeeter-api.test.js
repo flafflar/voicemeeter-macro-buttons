@@ -143,8 +143,13 @@ describe('Voicemeeter API', function(){
 					VM.type >= Voicemeeter.Types.Potato ? testProperty('PostFx1', 'boolean') : testPropertyNegative('PostFx1');
 					VM.type >= Voicemeeter.Types.Potato ? testProperty('PostFx2', 'boolean') : testPropertyNegative('PostFx2');
 
-					expect(strip).to.have.property('FadeTo').that.is.a('function');
-					expect(strip).to.have.property('FadeBy').that.is.a('function');
+					it('Should have a `FadeTo` method', function(){
+						expect(strip).to.have.property('FadeTo').that.is.a('function');
+					})
+
+					it('Should have a `FadeBy` method', function(){
+						expect(strip).to.have.property('FadeBy').that.is.a('function');
+					})
 
 				})
 
