@@ -25,6 +25,9 @@ install:
 build_script:
 - npm run build
 
+before_test:
+- npm run bundle:dev
+
 test_script:
 - ps: |
       $ErrorActionPreference = "Stop";
