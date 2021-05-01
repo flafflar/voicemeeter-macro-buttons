@@ -57,7 +57,7 @@ class Strip {
 		 * @returns {void}
 		 */
 		 const generateStringProperty = (name, vmName) => Object.defineProperty(this, name, {
-			get: () => !!Remote.getParameter(`Strip[${this.index}].${vmName || name}`),
+			get: () => Remote.getParameter(`Strip[${this.index}].${vmName || name}`),
 			set: (value) => Remote.setParameter(`Strip[${this.index}].${vmName || name}`, String(value))
 		});
 
