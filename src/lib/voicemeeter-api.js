@@ -397,45 +397,15 @@ Strip.Lengths = {
 class Voicemeeter {
 
 	/**
-	 * Constructs a Voicemeeter instance and logins to Voicemeeter
-	 *
-	 * Always remember to log out when you are done using the API
+	 * Constructs a Voicemeeter instance and connects to Voicemeeter
 	 */
 	constructor(){
-
-		/**
-		 * Whether this instance is logged in to Voicemeeter
-		 * @type {boolean}
-		 */
-		this.loggedIn = false;
-
-		this.login();
 
 		/**
 		 * An array holding all the strips of the Voicemeeter
 		 * @type {Strip[]}
 		 */
 		this.Strip = new Array(Strip.Lengths[this.type].total).fill().map((_, i) => new Strip(this, i));
-	}
-
-	/**
-	 * Logs in to the Voicemeeter API
-	 *
-	 * Automatically called on construction
-	 */
-	login(){
-		Remote.login();
-		this.loggedIn = true;
-	}
-
-	/**
-	 * Logs out of the Voicemeeer API
-	 *
-	 * Remember to call this function when you are done with the API
-	 */
-	logout(){
-		Remote.logout();
-		this.loggedIn = false;
 	}
 
 	/**

@@ -16,7 +16,7 @@ function getDLLPath(){
 	let out = execSync('reg query "HKLM\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\VB:Voicemeeter {17359A74-1236-5467}" /v UninstallString');
 	let re = /UninstallString\s+REG_SZ\s+(?<value>.+)\r\n/;
 	let value = re.exec(out).groups.value;
-	let dllPath = path.join(path.dirname(value), 'VoicemeeterRemote.dll');
+	let dllPath = path.join(path.dirname(value), 'VoicemeeterRemote64.dll');
 	return dllPath;
 }
 
@@ -635,3 +635,11 @@ export function getOutputDeviceInfo(){
 }
 
 // TODO: Implement VB-Audio Callback
+
+// Automatically log in
+login();
+
+// Automatically log out on exit
+process.on('exit', code => {
+	logout();
+})
