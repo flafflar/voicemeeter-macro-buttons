@@ -33,7 +33,7 @@ describe('Voicemeeter API', function(){
 		it('Should have a `type` property', function(){
 			expect(VM).to.have.property('type');
 			expect(VM.type).to.be.a('number');
-			expect(VM.type).to.be.oneOf(Object.values(VM.Types));
+			expect(VM.type).to.be.oneOf(Object.values(Voicemeeter.Types));
 		})
 
 		it('Should have an `inputDevices` property', function(){
