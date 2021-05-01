@@ -455,4 +455,11 @@ class Voicemeeter {
 
 }
 
+/**
+ * The possible types of Voicemeeter applications
+ *
+ * @enum {number}
+ */
+Voicemeeter.Types = Remote.Types;
+
 export default Voicemeeter;
