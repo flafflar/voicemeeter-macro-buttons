@@ -27,12 +27,12 @@ build_script:
 
 test_script:
 - ps: |
-  $voicemeeters = @('voicemeeter', 'voicemeeterpro', 'voicemeeter8')
-  foreach ($voicemeeter in $voicemeeters){
-    cscript ci/LaunchVoicemeeter.exe /name:$voicemeeter
-    npm test
-    cscript ci/KillVoicemeeter.vbs
-  }
+      $voicemeeters = @('voicemeeter', 'voicemeeterpro', 'voicemeeter8')
+      foreach ($voicemeeter in $voicemeeters){
+        cscript ci/LaunchVoicemeeter.exe /name:$voicemeeter
+         npm test
+        cscript ci/KillVoicemeeter.vbs
+      }
 
 artifacts:
   - path: dist/*.exe
